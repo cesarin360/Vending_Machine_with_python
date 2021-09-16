@@ -1,0 +1,28 @@
+<div class="container">
+  <div style="margin-top: 150;" class="row" id="anuncios">
+    {% for producto in pr %}
+    <div class="col-md-3">
+      <div
+        class="intro-text1 card {% if not request.session.carro.items %} animate__animated animate__fadeInUp {% endif %}"
+        style="width: 100%; margin: 10px 10px;">
+        <img class="card-img-top" src="{{producto.imagen.url}}">
+        <div class="card-body">
+          <h7 class="card-title">{{producto.nombre}}</h7>
+          <br>
+          <h7 class="card-text">Q{{producto.precio}}</h7>
+          <p style="display:inline-block; font-size: 8px;">&nbsp; Código:  {{producto.code}}</p>
+          <div class="card-footer text-center">
+            <a type="button" class="btn btn-outline-danger" href="{% url 'carro:agregar' producto.id %}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-cart-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+              </svg>
+              Add
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

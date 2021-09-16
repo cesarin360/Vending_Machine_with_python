@@ -1,0 +1,96 @@
+{% extends "ProjectWebApp/base.html" %}
+{% block content %}
+<div>
+    <a href="{% url 'store' %}" class="btn btn-secondary btn-sm" style="color: white; margin-top: 150px; 
+margin-bottom: 25px;margin-left: 35px;"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25   "
+            fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+            <path
+                d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+        </svg></a>
+    <div style="margin-left: 80px;">
+        <div class="square">
+            <div class="animate__animated animate__fadeIn w3_">
+                {% if request.session.carro.items %}
+                <h2 style="margin-top: 10px;">Lista de Productos</h2>
+                {% for key, value in request.session.carro.items %}
+                <br>
+                <img src="{{value.imagen}}" alt="producto" style="display: inline-block; height: 150px; width: 150px;">
+                <div style="display: inline-block;">
+                    <p style="float:left; font-size: 8px; margin-left: 10px;">&nbsp; Código: {{value.code}}</p>
+                    <br>
+                    <h3 style="margin-left: 10px;">{{value.nombre}}</h3>
+                    <h6 style="float:left; margin-left: 10px;">Cantidad: {{value.cantidad}}&nbsp;
+                        <br>Sub Total: Q{{value.precio}}
+                    </h6>
+                    <br>
+                    <br>
+                </div>
+                <br><br>
+                {% endfor %}
+                {% else %}
+                <h3 style="margin-top: 35px;">No hay Productos</h3>
+                <p>Por favor vuelva y agregue algún producto a la canasta.</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="square1">
+            <div class="w3_">
+                <h3 style="text-align:center;">Billetes Aceptados</h3>
+            </div>
+            <br />
+            <div style="margin-left:13px;">
+                <a {% if not request.session.carro.items %} class="isDisabled" {% else %} href="{% url 'restar_100' %}"
+                    {% endif %} style="display: inline-flex;">
+                    <div class="money">
+                        <img style="height: 30px; width: 70px;" src="/static/ProjectWebApp/img/billete_100.jpg">
+                    </div>
+                </a>
+                <a {% if not request.session.carro.items %} class="isDisabled" {% else %} href="{% url 'restar_50' %}"
+                    {% endif %} style="display: inline-flex">
+                    <div class="money">
+                        <img style="height: 30px; width: 70px;" src="/static/ProjectWebApp/img/billete_50.jpg">
+                    </div>
+                </a>
+                <a {% if not request.session.carro.items %} class="isDisabled" {% else %} href="{% url 'restar_20' %}"
+                    {% endif %}style="display: inline-flex;">
+                    <div class="money">
+                        <img style="height: 30px; width: 70px;" src="/static/ProjectWebApp/img/billete-20.jpg">
+                    </div>
+                </a>
+            </div>
+            <div style="margin-top: 10px; margin-left: 122px;">
+                <a {% if not request.session.carro.items %} class="isDisabled" {% else %} href="{% url 'restar_10' %}"
+                    {% endif %}style="display: inline-flex;">
+                    <div class="money">
+                        <img style="height: 30px; width: 70px;" src="/static/ProjectWebApp/img/billete-10.jpg">
+                    </div>
+                </a>
+            </div>
+            <br>
+            <p style="font-weight: bold;
+        font-family: 'Open Sans', sans-serif;">Total a pagar: Q{{import_total}}</p>
+            <p style="
+        font-family: 'Open Sans', sans-serif;">Cambio: Q{{cambio}}</p>
+        <div style="align-items: center;">
+            <a {% if not request.session.carro.items %} href="#openModal" {% endif %} type="button"
+                class="btn btn-primary btn-sm {% if request.session.carro.items %} isDisabled {% endif %}" style="margin-left: 120px; color:  
+        white; font-family: Verdana, Geneva, Tahoma, sans-serif;">{% if cambio > 0 %}Tomar Cambio{% else %}Terminar{% endif %}</a>
+    </div>    
+    </div>
+    </div>
+</div>
+<div id="openModal" class="modalDialog">
+    <div>
+        <h2 style="text-align: center;">Maquina Expendedora</h2>
+        <p>Gracias por comprar maquillaje en esta maquina expendedora. :)</p>
+        <p>Espero que vuelvas pronto. Si deseas comprar alguna otra cosa, por favor dale <b>Click </b>al boton de abajo.
+        </p>
+        <a href="{% url 'store' %}" class="btn btn-secondary btn-sm" style="color: white; 
+margin-bottom: 25px;margin-left: 160px;"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25   "
+                fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                <path
+                    d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+            </svg></a>
+    </div>
+</div>
+{% endblock %}
