@@ -39,16 +39,16 @@ margin-bottom: 25px;margin-left: 35px;"><svg xmlns="http://www.w3.org/2000/svg" 
             </div>
             <br />
             <div style="margin-left:13px;">
-                <a {% if not request.session.carro.items %} class="isDisabled" {% else %} href="{% url 'restar_100' %}"
-                    {% endif %} style="display: inline-flex;">
-                    <div class="money">
-                        <img style="height: 30px; width: 70px;" src="/static/ProjectWebApp/img/billete_100.jpg">
-                    </div>
-                </a>
-                <a {% if not request.session.carro.items %} class="isDisabled" {% else %} href="{% url 'restar_50' %}"
+                <a {% if not request.session.carro.items %} class="isDisabled" {% else %} href="{% url 'restar_5' %}"
                     {% endif %} style="display: inline-flex">
                     <div class="money">
-                        <img style="height: 30px; width: 70px;" src="/static/ProjectWebApp/img/billete_50.jpg">
+                        <img style="height: 30px; width: 70px;" src="/static/ProjectWebApp/img/billete_5.jpg">
+                    </div>
+                </a>
+                <a {% if not request.session.carro.items %} class="isDisabled" {% else %} href="{% url 'restar_10' %}"
+                    {% endif %}style="display: inline-flex;">
+                    <div class="money">
+                        <img style="height: 30px; width: 70px;" src="/static/ProjectWebApp/img/billete-10.jpg">
                     </div>
                 </a>
                 <a {% if not request.session.carro.items %} class="isDisabled" {% else %} href="{% url 'restar_20' %}"
@@ -58,15 +58,6 @@ margin-bottom: 25px;margin-left: 35px;"><svg xmlns="http://www.w3.org/2000/svg" 
                     </div>
                 </a>
             </div>
-            <div style="margin-top: 10px; margin-left: 122px;">
-                <a {% if not request.session.carro.items %} class="isDisabled" {% else %} href="{% url 'restar_10' %}"
-                    {% endif %}style="display: inline-flex;">
-                    <div class="money">
-                        <img style="height: 30px; width: 70px;" src="/static/ProjectWebApp/img/billete-10.jpg">
-                    </div>
-                </a>
-            </div>
-            <br>
             <p style="font-weight: bold;
         font-family: 'Open Sans', sans-serif;">Total a pagar: Q{{import_total}}</p>
             <p style="
@@ -92,5 +83,6 @@ margin-bottom: 25px;margin-left: 160px;"><svg xmlns="http://www.w3.org/2000/svg"
                     d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
             </svg></a>
     </div>
+    
 </div>
 {% endblock %}
